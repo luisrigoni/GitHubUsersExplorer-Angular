@@ -7,18 +7,20 @@
 <table class='table' *ngIf="forecasts">
     <thead>
         <tr>
-            <th>Date</th>
-            <th>Temp. (C)</th>
-            <th>Temp. (F)</th>
-            <th>Summary</th>
+            <th>Id</th>
+            <th>Login</th>
+            <th>Perfil</th>
+            <th>Data de cadastro</th>
+            <th>Repos</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let forecast of forecasts">
-            <td>{{ forecast.dateFormatted }}</td>
-            <td>{{ forecast.temperatureC }}</td>
-            <td>{{ forecast.temperatureF }}</td>
-            <td>{{ forecast.summary }}</td>
+            <td>{{ forecast.id }}</td>
+            <td>{{ forecast.login }}</td>
+            <td><a href="{{ forecast.html_url }}">{{ forecast.html_url }}</a></td>
+            <td>{{ forecast.created_at | date:'dd/MM/yyyy'}}</td>
+            <td><a href="repos/{{ forecast.login }}">{{ forecast.public_repos }}</a></td>
         </tr>
     </tbody>
 </table>
