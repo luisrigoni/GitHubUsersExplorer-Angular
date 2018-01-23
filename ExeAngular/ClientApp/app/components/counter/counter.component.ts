@@ -11,7 +11,7 @@ export class CounterComponent {
     public repos: GitHubRepo[];
 
     constructor(http: Http, route: ActivatedRoute) {
-        let login = route.snapshot.queryParams["login"];
+        let login = route.snapshot.params["login"];
 
         http.get('https://api.github.com/users/' + login).subscribe(result => {
             this.details = result.json() as GitHubUserDetails;

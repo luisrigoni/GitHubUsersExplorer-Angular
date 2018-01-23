@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "778bde58940bb97a6e2c"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "e0787679ea4ac811ea9a"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -1633,7 +1633,7 @@ var AppModuleShared = (function () {
                 __WEBPACK_IMPORTED_MODULE_4__angular_router__["RouterModule"].forRoot([
                     { path: '', redirectTo: 'home', pathMatch: 'full' },
                     { path: 'home', component: __WEBPACK_IMPORTED_MODULE_7__components_home_home_component__["a" /* HomeComponent */] },
-                    { path: 'counter', component: __WEBPACK_IMPORTED_MODULE_9__components_counter_counter_component__["a" /* CounterComponent */] },
+                    { path: 'counter/:login', component: __WEBPACK_IMPORTED_MODULE_9__components_counter_counter_component__["a" /* CounterComponent */] },
                     { path: 'fetch-data', component: __WEBPACK_IMPORTED_MODULE_8__components_fetchdata_fetchdata_component__["a" /* FetchDataComponent */] },
                     { path: '**', redirectTo: 'home' }
                 ])
@@ -1669,7 +1669,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var CounterComponent = (function () {
     function CounterComponent(http, route) {
         var _this = this;
-        var login = route.snapshot.queryParams["login"];
+        var login = route.snapshot.params["login"];
         http.get('https://api.github.com/users/' + login).subscribe(function (result) {
             _this.details = result.json();
         }, function (error) { return console.error(error); });
@@ -2152,7 +2152,7 @@ module.exports = "<div class='container-fluid'>\r\n    <div class='row'>\r\n    
 /* 24 */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Detalhes</h1>\r\n\r\n<p *ngIf=\"!forecasts\"><em>Loading...</em></p>\r\n\r\n<div *ngIf=\"forecasts\">\r\n\r\n    <ul>\r\n        <li><strong>Id: </strong>{{ details.id }}</li>\r\n        <li><strong>Login: </strong>{{ details.login }}</li>\r\n        <li><strong>Perfil: </strong><a href=\"{{ details.html_url }}\">{{ details.html_url }}</a></li>\r\n        <li><strong>Data de cadastro:</strong>{{ details.created_at | date:'dd/MM/yyyy'}}</li>\r\n        <li><strong>Repos: </strong>{{ details.public_repos }}</li>\r\n    </ul>\r\n\r\n    <table class='table'>\r\n        <thead>\r\n            <tr>\r\n                <th>Id</th>\r\n                <th>Nome</th>\r\n                <th>URL</th>\r\n            </tr>\r\n        </thead>\r\n        <tbody>\r\n            <tr *ngFor=\"let repo of repos\">\r\n                <td>{{ repo.id }}</td>\r\n                <td>{{ repo.name }}</td>\r\n                <td><a href=\"{{ repo.html_url }}\">{{ repo.html_url }}</a></td>\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n</div>\r\n";
+module.exports = "<h1>Detalhes</h1>\r\n\r\n<p *ngIf=\"!details\"><em>Loading...</em></p>\r\n\r\n<ul *ngIf=\"details\">\r\n    <li><strong>Id: </strong>{{ details.id }}</li>\r\n    <li><strong>Login: </strong>{{ details.login }}</li>\r\n    <li><strong>Perfil: </strong><a href=\"{{ details.html_url }}\">{{ details.html_url }}</a></li>\r\n    <li><strong>Data de cadastro:</strong>{{ details.created_at | date:'dd/MM/yyyy'}}</li>\r\n    <li><strong>Repos: </strong>{{ details.public_repos }}</li>\r\n</ul>\r\n\r\n<p *ngIf=\"!repos\"><em>Loading...</em></p>\r\n<table class='table' *ngIf=\"repos\">\r\n    <thead>\r\n        <tr>\r\n            <th>Id</th>\r\n            <th>Nome</th>\r\n            <th>URL</th>\r\n        </tr>\r\n    </thead>\r\n    <tbody>\r\n        <tr *ngFor=\"let repo of repos\">\r\n            <td>{{ repo.id }}</td>\r\n            <td>{{ repo.name }}</td>\r\n            <td><a href=\"{{ repo.html_url }}\">{{ repo.html_url }}</a></td>\r\n        </tr>\r\n    </tbody>\r\n</table>\r\n";
 
 /***/ }),
 /* 25 */
