@@ -1,26 +1,18 @@
-<h1>Weather forecast</h1>
+<h1>GitHub Users</h1>
 
-<p>This component demonstrates fetching data from the server.</p>
+<p *ngIf="!users"><em>Loading...</em></p>
 
-<p *ngIf="!forecasts"><em>Loading...</em></p>
-
-<table class='table' *ngIf="forecasts">
+<table class='table' *ngIf="users">
     <thead>
         <tr>
             <th>Id</th>
             <th>Login</th>
-            <th>Perfil</th>
-            <th>Data de cadastro</th>
-            <th>Repos</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let forecast of forecasts">
-            <td>{{ forecast.id }}</td>
-            <td>{{ forecast.login }}</td>
-            <td><a href="{{ forecast.html_url }}">{{ forecast.html_url }}</a></td>
-            <td>{{ forecast.created_at | date:'dd/MM/yyyy'}}</td>
-            <td><a href="repos/{{ forecast.login }}">{{ forecast.public_repos }}</a></td>
+        <tr *ngFor="let user of users">
+            <td>{{ user.id }}</td>
+            <td><a [routerLink]="['/counter', user.login]">{{ user.login }}</a></td>
         </tr>
     </tbody>
 </table>

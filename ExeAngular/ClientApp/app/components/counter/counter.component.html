@@ -1,7 +1,31 @@
-<h1>Counter</h1>
+<h1>Detalhes</h1>
 
-<p>This is a simple example of an Angular component.</p>
+<p *ngIf="!forecasts"><em>Loading...</em></p>
 
-<p>Current count: <strong>{{ currentCount }}</strong></p>
+<div *ngIf="forecasts">
 
-<button (click)="incrementCounter()">Increment</button>
+    <ul>
+        <li><strong>Id: </strong>{{ details.id }}</li>
+        <li><strong>Login: </strong>{{ details.login }}</li>
+        <li><strong>Perfil: </strong><a href="{{ details.html_url }}">{{ details.html_url }}</a></li>
+        <li><strong>Data de cadastro:</strong>{{ details.created_at | date:'dd/MM/yyyy'}}</li>
+        <li><strong>Repos: </strong>{{ details.public_repos }}</li>
+    </ul>
+
+    <table class='table'>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>URL</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let repo of repos">
+                <td>{{ repo.id }}</td>
+                <td>{{ repo.name }}</td>
+                <td><a href="{{ repo.html_url }}">{{ repo.html_url }}</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
